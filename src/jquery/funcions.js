@@ -1,4 +1,4 @@
-//usando ajax con jquery enviar datos del formulario
+// usando ajax con jquery enviar datos del formulario Insert
 $(document).ready(function() {
 	$('#formulario').submit(function(e) {
 		e.preventDefault();
@@ -7,9 +7,9 @@ $(document).ready(function() {
 			url: "src/controllers/insert.php",
 			data: $(this).serialize(),
 			success: function(resp) {
-				if(resp == "1"){
+				if(resp == 1){
 					rendertbody();
-				} else if (resp == "0"){
+				} else if (resp == 0){
 					alert('ERROR al insertar (ToT)');
 				} else {
 					alert('algun campo llego vacio..');
@@ -19,6 +19,37 @@ $(document).ready(function() {
 	});
 });
 
+// usando ajax con jquery enviar datos del formulario Update
+$(document).ready(function() {
+	$('#update-form').submit(function(e) {
+		e.preventDefault();
+		$.ajax({
+			type: "Post",
+			url: "src/controllers/update.php",
+			data: $(this).serialize(),
+			success: function(resp) {
+				if(resp == 1){
+					rendertbody();
+				} else if (resp == 0){
+					alert('ERROR al Actualizar (ToT)');
+				} else {
+					alert('algun campo llego vacio..');
+				}
+				console.log(resp);
+				quitPopup();
+			}
+		});
+	});
+});
+
+function quitPopup(){
+	if( $('#update-popup').is(":visible") ){
+		$('#update-popup').css('display','none');
+	}
+}
+
+
+// usando ajax para pedir datos y pintar la tabla con js
 function rendertbody(){
 	$.ajax({
 		type: "Get",
@@ -26,7 +57,6 @@ function rendertbody(){
 		url: "src/controllers/select.php",
 		success: function(resp) {
 			let tbody = document.getElementById('datos');
-			console.log(resp);
 			tbody.innerHTML = '';
 			for(let i = 0; i < resp.length; i++){
 				
@@ -41,12 +71,37 @@ function rendertbody(){
 						<td>${nombre}</td>
 						<td>${apellido}</td>
 						<td>${descripcion}</td>
-						<td>Accion</td>
+						<td>
+							<a id="btnUp" class="btnUp" href="#" onclick="viewPopup(${id},'${nombre}','${apellido}','${descripcion}')">Update</a>
+							<a id="btnDel" class="btnDel" href="#" onclick="delRow(${id})">Eliminar</a>
+						</td>
 					</tr>`
 			}
 		}
 	});
 }
 
-rendertbody();
+function delRow(id) {
+	$.ajax({
+		type: "Post",
+		url: "src/controllers/delete.php?",
+		data: 'id='+id,
+		success: function(resp) {
+			if(resp == 1){
+				rendertbody();
+			} else if (resp == 0){
+				alert('ERROR al eliminar (ToT)');
+			} 
+		}
+	});
+}
 
+function viewPopup(id, nombre, apellido, descripcion) {
+	$("#update-popup").show();
+	document.getElementById("id-popup").value = id;
+	document.getElementById("nombre-popup").value = nombre;
+	document.getElementById("apellido-popup").value = apellido;
+	document.getElementById("description-popup").value = descripcion;
+}
+
+rendertbody();

@@ -57,19 +57,84 @@ td {
 }
 
 .btnDel {
-	color: white;
+	color: black;
 	background-color: red;
 	padding: 4px 0;
 	border-radius: 5px;
 	width: 100px;
 	margin: 0 10px;
+	display: inline-block;
+	text-decoration: solid;
+}
+
+.btnDel:hover {
+	color : white;
+	background-color: black;
 }
 
 .btnUp { 
-	color: white;
+	color: black;
 	background-color: orange;
 	padding: 4px 0;
 	border-radius: 5px;
 	width: 100px;
 	margin: 0 10px;
+	display: inline-block;
+	text-decoration: solid;
+}
+
+.btnUp:hover {
+	color : white;
+	background-color: black;
+}
+
+#update-popup {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	display: none;
+}
+
+.uptate-form {
+    background-color: white;
+}
+
+.update-form {
+	background-color: white;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+    margin-left: -210px;
+    margin-top: -255px;
+    left: 50%;
+    top: 50%;
+    position: relative;
+    width: 350px;
+    padding: 20px 40px 40px 40px;
+    box-shadow: 1px 1px 5px #444444;
+	border-radius: 10px;
+}
+
+.update-form input[type='text'],
+.update-form textarea {
+	margin-top: 5px;
+	border: 1px solid red;
+	border-color: gray;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 10px 20px 10px 25px;
+	width: 280px;
+}
+
+.update-form button,
+.update-form input[type='button'] {
+	color: white;
+	background-color: #52CC21;
+	padding: 8px 0;
+	border-radius: 5px;
+	margin-top: 10px;
+	width: 100px;
 }

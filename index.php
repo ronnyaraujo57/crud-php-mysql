@@ -31,6 +31,7 @@
 			<tbody id="datos"></tbody>
 		</table>
 	</section>
+	<?php include('src/views/viewUpdate.php') ?>
 	<script type="text/javascript" src="src/jquery/funcions.js"></script>
 	
 <?php include 'src/views/footer.php' ?>

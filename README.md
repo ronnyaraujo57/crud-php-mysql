@@ -3,7 +3,7 @@
 Este proyecto funciona con la siguiente estructura de base de dato
 
 CREATE TABLE `tarea` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(25) NOT NULL,
   `apellido` varchar(25) NOT NULL,
   `descripcion` varchar(120) NOT NULL
